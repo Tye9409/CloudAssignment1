@@ -1,0 +1,60 @@
+//-layout for users logged in homepage
+extends layout
+
+doctype html
+html(lang='en')
+
+block content
+  .wrapper
+
+    h1.center Welcome to the CSS webkit filtering Demo!
+    br
+    br
+    br
+    img(src="#{user.picture}")
+    h2 Welcome #{user.displayName}!
+    br
+    br
+    br
+    br
+
+    head
+      meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    body
+
+      
+      script(type='text/javascript', src='http://code.jquery.com/jquery-2.0.0.js')
+      script(type='text/javascript').
+        $(document).ready(
+        function(){
+        $('input:submit').attr('disabled',true);
+        $('input:file').change(
+        function(){
+        if ($(this).val()){
+        $('input:submit').removeAttr('disabled');
+        }
+        else {
+        $('input:submit').attr('disabled',true);
+        }
+        });
+        });
+    body
+      form(action='/api/photo', enctype='multipart/form-data', method='post')
+        input.myGreyButton(type='file', name='userPhoto')
+        input.myGreyButton#submitbutton(type='submit', value='Upload Image' name="submit")
+
+        br
+        br
+        br
+        br
+    
+
+      img.invert(src="#{user.picture}")
+      br
+      br
+      br
+      br
+
+
+      a(href='/logout')
+          button.myLogoutButton(type='button') Logout

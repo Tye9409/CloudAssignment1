@@ -1,0 +1,79 @@
+//required resources and dependencies
+var app = require('../app');
+var debug = require('debug')('nodejs-regular-webapp2:server');
+var http = require('http');
+
+// Get the port number from environment and store in Express.
+ 
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+
+//Create an HTTP server for webapp to run on
+
+
+var server = http.createServer(app);
+
+
+//Listen on provided port on all interfaces
+ 
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+
+//Normalize the port number
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named the pipeline for the port
+    return val;
+  }
+
+  if (port >= 0) {
+    // returns the port number
+    return port;
+  }
+
+  return false;
+}
+
+// Event listener for server error event.
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle errors with messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+//added listening event 
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}

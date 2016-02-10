@@ -1,0 +1,49 @@
+//-index layout for homepage
+extends layout
+
+block content
+  script(src="https://cdn.auth0.com/js/lock-7.11.js")
+  
+  h1.wrapper= title
+  p.wrapper Welcome to #{title}
+  br
+
+  head
+    title Bootstrap Example
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+  body
+    .container
+      .jumbotron
+        h1.wrapper CSS Web Filtering Demo!
+        p.wrapper Add a filtering effect to your own images!
+
+        input.button.myButton(type = 'button',value='Login', style="margin: auto 0; padding: 10px 10px", onclick="signin()")
+
+      .row
+        .col-sm-4
+          h3.wrapper Step 1
+          p.wrapper Login with Google+ account!
+          
+        .col-sm-4
+          h3.wrapper Step 2
+          p.wrapper Choose an image to upload!
+        .col-sm-4
+          h3.wrapper Step 3
+          p.wrapper Choose your filters!
+  script.
+    var lock = new Auth0Lock('#{env.AUTH0_CLIENT_ID}', '#{env.AUTH0_DOMAIN}');
+    function signin() {
+      lock.show({
+          callbackURL: '#{env.AUTH0_CALLBACK_URL}'
+        , responseType: 'code'
+        , authParams: {
+          scope: 'openid name email picture'
+        }
+      });
+    }
+
+  

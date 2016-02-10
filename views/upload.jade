@@ -1,0 +1,101 @@
+//-layout for uploading images and deploying filters from style.css
+extends layout
+
+doctype html
+html(lang='en')
+
+block content
+
+  head
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+
+  body
+    .wrapper
+
+
+        form
+
+          h1 Here is your uploaded picture!
+          br
+          br
+          br
+          br
+
+
+         img.resize(src="#{'/static/' + upload.filename}")
+
+      
+        h1 Click the Buttons to see some CSS filters!
+        h2 Mouse-over images to see the original!
+         br
+         br  
+
+         img.desaturate.resize#grayscale(alt='Grayscale!',src="#{'/static/' + upload.filename}", style='display: none;')
+
+         input.myFilterButton(type='button', value='black/white', style="margin: 10px;", onclick="document.getElementById('grayscale').style.display = 'block';this.disabled=true;")
+
+
+
+         img.sepia.resize#sepia(src="#{'/static/' + upload.filename}", style='display: none;')
+
+         input.myFilterButton(type='button', value='sepia', style="margin: 10px;", onclick="document.getElementById('sepia').style.display = 'block' ;this.disabled=true;")
+
+
+
+         img.saturate.resize#saturate(src="#{'/static/' + upload.filename}", style='display: none;')
+
+         input.myFilterButton(type='button', value='saturate', style="margin: 10px;", onclick="document.getElementById('saturate').style.display = 'block';this.disabled=true;")
+
+
+
+         img.hue-rotate.resize#huetate(src="#{'/static/' + upload.filename}", style='display: none;')
+
+         input.myFilterButton(type='button', value='hue-rotate', style="margin: 10px;", onclick="document.getElementById('huetate').style.display = 'block';this.disabled=true;")
+
+
+
+         img.invert.resize#invert(src="#{'/static/' + upload.filename}", style='display: none;')
+
+         input.myFilterButton(type='button', value='invert', style="margin: 10px;", onclick="document.getElementById('invert').style.display = 'block';this.disabled=true;")
+
+
+
+         img.opacity.resize#opacity(src="#{'/static/' + upload.filename}", style='display: none;')
+
+         input.myFilterButton(type='button', value='opacity', style="margin: 10px;", onclick="document.getElementById('opacity').style.display = 'block';this.disabled=true;")
+
+
+
+         img.brightness.resize#brightness(src="#{'/static/' + upload.filename}", style='display: none;')
+
+         input.myFilterButton(type='button', value='darken', style="margin: 10px;", onclick="document.getElementById('brightness').style.display = 'block';this.disabled=true;")
+
+
+
+         img.contrast.resize#contrast(src="#{'/static/' + upload.filename}", style='display: none;')
+
+         input.myFilterButton(type='button', value='contrast', style="margin: 10px;", onclick="document.getElementById('contrast').style.display = 'block';this.disabled=true;")
+
+
+
+         img.blur.resize#blur(src="#{'/static/' + upload.filename}", style='display: none;')
+
+         input.myFilterButton(type='button', value='blur', style="margin: 10px;", onclick="document.getElementById('blur').style.display = 'block' ;this.disabled=true;")
+
+
+         
+
+         br
+         br
+         br
+
+         br
+         br
+
+         a(href='/logout')
+          button.myLogoutButton(type='button') Finish!
+
+
+
+     
+    
